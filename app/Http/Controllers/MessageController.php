@@ -51,7 +51,7 @@ class MessageController extends Controller
         foreach ($messages as $message) {
             $message->pesan = base64ToText($message->pesan);
         }
-        return response()->json($messages);
+        return response()->json($messages,200);
     }
     public function registrasiPengguna(Request $request){
         function textToBase64($text) {

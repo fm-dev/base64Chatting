@@ -19,5 +19,8 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('/page/dashboard');
 });
+Route::get('/registrasi', function () {
+    return view('/page/registrasi');
+});
 
 // Route::post('/api/registrasi',[MessageController::class, 'registrasiPengguna'])->withoutMiddleware(['csrf']);

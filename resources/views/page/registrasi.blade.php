@@ -14,11 +14,11 @@
     </div>
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
+    <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign Up to your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form class="space-y-6" action="/login">
+    <form class="space-y-6">
       <div>
         <label for="name" class="block text-sm font-medium leading-6 text-gray-900">What's your name</label>
         <div class="mt-2 ">
@@ -39,21 +39,43 @@
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+        <button onClick="btnSignUp()" type="button" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign Up</button>
       </div>
     </form>
-    <p class="mt-10 text-center text-sm text-gray-500">
-      Not have Account?
-      <a href="/registrasi" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Sign up</a>
-    </p>
+    
   </div>
 </div>
   </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function btnSignUp (){
+        const nama = document.getElementById('name').value
+        const password = document.getElementById('password').value
+        var data = {
+            'nama' : nama,
+            'password' : password
+        };
+        $.ajax({
+            type: "POST",
+            url: "/api/registrasi",
+            dataType:"json",
+            data: data,
+            success: function(response){
+                Swal.fire({
+                    icon: "success",
+                    title: "Selamat",
+                    text: "Anda Telah Melakukan Registrasi!!",
+                }).then((result) => {
+                    window.location.href = "/";
+                });
+            },
+            error: function(){
+                console.log("testing")
+            }
+        });
+    }
+</script>
 </body>
 </html>
-<script>
-  var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-console.log(csrfToken);
-</script>
