@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\MessageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('/page/dashboard');
 });
+
+// Route::post('/api/registrasi',[MessageController::class, 'registrasiPengguna'])->withoutMiddleware(['csrf']);

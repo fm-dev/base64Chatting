@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pesan_chattings', function (Blueprint $table) {
+        Schema::create('penggunas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pengguna_id');
-            $table->string('pesan');
+            $table->string('nama');
+            $table->string('password');
             $table->timestamps();
-
-
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pesan_chattings');
+        Schema::dropIfExists('penggunas');
     }
 };
