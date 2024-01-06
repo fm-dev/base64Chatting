@@ -14,6 +14,7 @@ io.on('connection',(socket)=>{
 
         io.sockets.emit('sendchetToClient',message);
     });
+    
     socket.on('disconnect',(socket)=>{
         console.log('disconnect')
     });
