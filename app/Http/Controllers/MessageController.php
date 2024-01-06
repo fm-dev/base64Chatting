@@ -142,6 +142,7 @@ class MessageController extends Controller
 
             // Mengatur nilai sesi
             $_SESSION['key'] = $pengguna->id;
+            $_SESSION['nama'] = $pengguna->nama;
             $data = [
                 'data' => $pengguna,
                 'status' => "200"
@@ -291,7 +292,7 @@ class MessageController extends Controller
 
         // Mendapatkan nilai sesi
         $value = $_SESSION['key'];
-        echo $value;
+        
         if($value != null){
             return view('/page/dashboard');
         }else{

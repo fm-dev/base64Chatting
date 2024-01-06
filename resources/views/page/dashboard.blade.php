@@ -71,6 +71,7 @@
                     <div class="flex flex-col-reverse  p-2 my-2 min-h-96 max-h-96  rounded-lg  opacity-25 overflow-y-auto" >
                         
                         <div id="chetcontent">
+                        
                         </div>
                     </div>
                     <div class="  w-full ">
@@ -116,7 +117,10 @@
         socket.on('connection');
         let chetinput= $('#chetinput');
         chetinput.keypress(function (e){
-            let message = $(this).val();
+            let message = {
+                pesan: $(this).val(),
+                nama : '<?php echo $_SESSION['nama']; ?>'
+            };
             if(e.which === 13 && !e.shiftkey && message != ""){
                 socket.emit('sendChetTosServer',message);
                 chetinput.val('');
@@ -125,7 +129,7 @@
         });
 
         socket.on('sendchetToClient', (massage)=>{
-            $('#chetcontent').append(` <div class="  my-2 p-2 rounded-lg bg-purple-900" ><div class="col"><h1 class="text-white">${massage}</h1></div> <div class="col  "><h1 class="text-right text-white">1 minutes ago</h1></div></div>`);
+            $('#chetcontent').append(` <div class="flex my-2 gap-2"><div class="inline-block  rounded-full ring-2 ring-white p-5 bg-purple-900 text-white">bs</div><div class="   p-2 rounded-lg bg-purple-900" ><div class="col"><h1 class="text-white">${massage.pesan}</h1></div> <div class="col  "><h1 class="text-right text-white">1 minutes ago</h1></div></div></div>`);
         })
     });
 </script>
