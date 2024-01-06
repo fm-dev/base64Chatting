@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\pesanChatting;
 use App\Models\pengguna;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 class MessageController extends Controller
 {
    
     //
+    public function __construct(){
+        session_start();
+    }
     public function index()
     {
         function base64ToText($base64String) {
@@ -134,6 +137,11 @@ class MessageController extends Controller
         $password = textToBase64($request->input('password'));
         $pengguna = pengguna::where('nama',$nama)->where('password',$password)->first();
         if($pengguna){
+            // $value = session(['id_penggun' => $pengguna->id]);
+            // Session::put('id_pengguna', "testimg");
+
+            // Mengatur nilai sesi
+            $_SESSION['key'] = $pengguna->id;
             $data = [
                 'data' => $pengguna,
                 'status' => "200"
@@ -278,5 +286,16 @@ class MessageController extends Controller
             'status' => 'berhasil'
         ];
         return response()->json($data,200);
+    }
+    public function Dashboard(Request $request ){
+
+        // Mendapatkan nilai sesi
+        $value = $_SESSION['key'];
+        echo $value;
+        if($value != null){
+            return view('/page/dashboard');
+        }else{
+            return redirect('/');
+        }
     }
 }

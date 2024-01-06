@@ -16,9 +16,7 @@ use App\Http\Controllers\MessageController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', function () {
-    return view('/page/dashboard');
-});
+Route::get('/dashboard',[MessageController::class, 'Dashboard']);
 Route::get('/registrasi', function () {
     return view('/page/registrasi');
 });

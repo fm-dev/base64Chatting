@@ -39,7 +39,7 @@
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+        <button onClick="btnSignIn()" type="button" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
       </div>
     </form>
     <p class="mt-10 text-center text-sm text-gray-500">
@@ -50,10 +50,35 @@
 </div>
   </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function btnSignIn (){
+        const nama = document.getElementById('name').value
+        const password = document.getElementById('password').value
+        var data = {
+            'nama' : nama,
+            'password' : password
+        };
+        $.ajax({
+            type: "POST",
+            url: "/api/login",
+            dataType:"json",
+            data: data,
+            success: function(response){
+                Swal.fire({
+                    icon: "success",
+                    title: "Selamat",
+                    text: "Anda Telah Melakukan login",
+                }).then((result) => {
+                    window.location.href = "/dashboard";
+                });
+            },
+            error: function(){
+                console.log("testing")
+            }
+        });
+    }
+</script>
 </body>
 </html>
-<script>
-  var csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-console.log(csrfToken);
-</script>
