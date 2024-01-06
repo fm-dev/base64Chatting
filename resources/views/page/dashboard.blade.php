@@ -47,10 +47,11 @@
                         <div data-anijs="if: click, do: swing animated">
                             <h1 class="text-zinc-500 font-bold" >Group Member</h1>
                         </div>
-                        <div class="flex overflow-x-auto  gap-2 my-3 xl:flex-wrap overflow-x p-1">
+                        <div class="flex overflow-x-auto  gap-2 my-3 max-h-48 xl:flex-wrap overflow-x p-1" >
                             <?php foreach($data_pengguna as $item){ ?>
                             <div data-anijs="if: mouseover, do: pulse animated" class="p-2 rounded-lg bg-purple-400 text-sm text-white cursor-default hover:bg-purple-700 " ><?= $item['nama']?></div>
                             <?php }?>
+                    
                             
                             <!-- <div class=" size-16">
                                 <div class="inline-block  rounded-full ring-2 ring-white p-5 bg-grey-500">Bu</div>
