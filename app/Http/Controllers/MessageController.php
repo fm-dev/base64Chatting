@@ -294,7 +294,8 @@ class MessageController extends Controller
         $value = $_SESSION['key'];
         
         if($value != null){
-            return view('/page/dashboard');
+            $data['data_pengguna'] = pengguna::all();
+            return view('/page/dashboard',$data);
         }else{
             return redirect('/');
         }

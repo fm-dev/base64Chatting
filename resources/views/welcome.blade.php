@@ -75,7 +75,11 @@ function btnSignIn (){
                 });
             },
             error: function(){
-                console.log("testing")
+              Swal.fire({
+                    icon: "error",
+                    title: "Maaf",
+                    text: "Nama dan password anda ada yang salah ",
+                });
             }
         });
     }

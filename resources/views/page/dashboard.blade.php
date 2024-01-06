@@ -48,8 +48,9 @@
                             <h1 class="text-zinc-500 font-bold" >Group Member</h1>
                         </div>
                         <div class="flex overflow-x-auto  gap-2 my-3 xl:flex-wrap overflow-x p-1">
-                            <div data-anijs="if: mouseover, do: pulse animated" class="p-2 rounded-lg bg-purple-400 text-sm text-white cursor-default hover:bg-purple-700 " >budionodsad</div>
-                            
+                            <?php foreach($data_pengguna as $item){ ?>
+                            <div data-anijs="if: mouseover, do: pulse animated" class="p-2 rounded-lg bg-purple-400 text-sm text-white cursor-default hover:bg-purple-700 " ><?= $item['nama']?></div>
+                            <?php }?>
                             
                             <!-- <div class=" size-16">
                                 <div class="inline-block  rounded-full ring-2 ring-white p-5 bg-grey-500">Bu</div>
@@ -129,7 +130,9 @@
         });
 
         socket.on('sendchetToClient', (massage)=>{
-            $('#chetcontent').append(` <div class="flex my-2 gap-2"><div class="inline-block  rounded-full ring-2 ring-white p-5 bg-purple-900 text-white">bs</div><div class="   p-2 rounded-lg bg-purple-900" ><div class="col"><h1 class="text-white">${massage.pesan}</h1></div> <div class="col  "><h1 class="text-right text-white">1 minutes ago</h1></div></div></div>`);
+            var nama = massage.nama;
+            var singkatNama = nama.substring(0, 2);
+            $('#chetcontent').append(` <div class="flex my-2 gap-3"><div class="flex self-center  rounded-full ring-2 ring-white p-3 bg-purple-900 text-white text-xs uppercase">${singkatNama}</div><div class="   p-2 rounded-tl-lg rounded-tr-lg rounded-br-lg bg-purple-900" ><div class=""><h1 class="text-white">${massage.pesan}</h1></div> <div class="col  "><h1 class="text-right text-white text-xs">1 minutes ago</h1></div></div></div>`);
         })
     });
 </script>
