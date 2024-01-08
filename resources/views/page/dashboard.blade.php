@@ -141,8 +141,8 @@
         return waktuFormat;
     }
     $(function(){
-        let ip_address = '127.0.0.1';
-        let socket_port = '3000';
+        let ip_address = '103.127.99.188';
+        let socket_port = '80';
         let socket = io(ip_address+ ':' + socket_port);
 
         socket.on('connection');
